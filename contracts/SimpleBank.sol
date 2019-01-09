@@ -51,8 +51,8 @@ contract SimpleBank {
     /// @return The users enrolled status
     // Emit the appropriate event
     function enroll() public returns (bool){
-        return enrolled[msg.sender];
         emit LogEnrolled(msg.sender);
+        return enrolled[msg.sender];
     }
 
     /// @notice Deposit ether into bank
@@ -81,8 +81,8 @@ contract SimpleBank {
         require(withdrawAmount <= balances[msg.sender]);
         balances[msg.sender] -= withdrawAmount;
         msg.sender.transfer(withdrawAmount);
-        return balances[msg.sender];
         emit LogWithdrawal(msg.sender, withdrawAmount, balances[msg.sender]);
+        return balances[msg.sender];
     }
 
     // Fallback function - Called if other functions don't match call or
